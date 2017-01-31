@@ -50,7 +50,7 @@ class netdata::install inherits netdata {
   # cd netdata
   # ./netdata-installer.sh
   exec { 'Install_netdata':
-    command => "/opt/netdata/netdata-installer.sh --install ${install_dir}",
+    command => "/usr/local/src/netdata/netdata-installer.sh --install ${install_dir}",
     cwd     => '/opt/netdata',
     creates => '/etc/netdata',
   }
