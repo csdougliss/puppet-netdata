@@ -20,12 +20,8 @@ class netdata::install inherits netdata {
     }
   }
 
-  if !defined(Package['git']) {
-    package { 'git':
-      ensure => present
-    }
-  }
-
+  # git is already defined in puppet module
+  
   # download it - the directory 'netdata' will be created
   git::repo{ 'netdata':
     path   => '/usr/local/src/netdata',
