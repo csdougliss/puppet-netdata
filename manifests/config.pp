@@ -1,3 +1,3 @@
-class netadata::config inherits netadata {
+class netdata::config inherits netdata {
 
 }
