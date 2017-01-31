@@ -23,6 +23,24 @@ class netdata::install inherits netdata {
   # git is already defined in puppet module
   # make is already in make module
 
+  # Optional package - used for monitoring mysql databases
+  if($netdata::install_python_mysqldb) {
+    if !defined(Package['python-mysqldb']) {
+      package { 'python-mysqldb':
+        ensure => installed,
+      }
+    }
+  }
+
+  # Optional package - used for monitoring elasticsearch
+  if($netdata::install_python_requests) {
+    if !defined(Package['python-requests']) {
+      package { 'python-requests':
+        ensure => installed,
+      }
+    }
+  }
+
   # download it - the directory 'netdata' will be created
   vcsrepo { '/usr/local/src/netdata':
     source => 'https://github.com/firehol/netdata.git'
