@@ -7,10 +7,6 @@ class netdata::install inherits netdata {
     'curl'
   ]
 
-  package { $netdata_ubuntu_packages:
-    ensure => 'present'
-  }
-
   $netdata_centos_packages = [
 
     'autoconf', 'automake', 'curl', 'gcc', 'git', 'libmnl-devel', 'libuuid-devel', 'lm_sensors',
