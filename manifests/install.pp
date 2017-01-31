@@ -1,29 +1,19 @@
 class netdata::install inherits netdata {
 
-  $netdata_ubuntu_packages = [
-
-    'zlib1g-dev', 'uuid-dev', 'libmnl-dev', 'gcc', 'make', 'git',
-    'autoconf', 'autoconf-archive', 'autogen', 'automake', 'pkg-config',
-    'curl'
-  ]
-
-  $netdata_centos_packages = [
-
-    'autoconf', 'automake', 'curl', 'gcc', 'git', 'libmnl-devel', 'libuuid-devel', 'lm_sensors',
-    'make', 'MySQL-python', 'nc', 'pkgconfig', 'python', 'python-psycopg2',
-    'PyYAML', 'zlib-devel'
-  ]
-
   case $::operatingsystem {
     /(?i:debian|ubuntu)/: {
-      ensure_packages { $netdata_ubuntu_packages:
-        ensure => 'present'
-      }
+      ensure_packages(
+        ['zlib1g-dev', 'uuid-dev', 'libmnl-dev', 'gcc', 'make', 'git',
+         'autoconf', 'autoconf-archive', 'autogen', 'automake', 'pkg-config',
+         'curl'],
+        {'ensure' => 'present'})
     }
     /(?i:redhat|centos)/: {
-      ensure_packages { $netdata_centos_packages:
-        ensure => 'present'
-      }
+      ensure_packages(
+        [ 'autoconf', 'automake', 'curl', 'gcc', 'git', 'libmnl-devel', 'libuuid-devel', 'lm_sensors',
+          'make', 'MySQL-python', 'nc', 'pkgconfig', 'python', 'python-psycopg2',
+          'PyYAML', 'zlib-devel'],
+        {'ensure' => 'present'})
     }
     default: {
       fail("Module ${module_name} has no config for ${::operatingsystem}")
