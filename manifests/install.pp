@@ -16,12 +16,12 @@ class netdata::install inherits netdata {
 
   case $::operatingsystem {
     /(?i:debian|ubuntu)/: {
-      package { $netdata_ubuntu_packages:
+      ensure_packages { $netdata_ubuntu_packages:
         ensure => 'present'
       }
     }
     /(?i:redhat|centos)/: {
-      package { $netdata_centos_packages:
+      ensure_packages { $netdata_centos_packages:
         ensure => 'present'
       }
     }
