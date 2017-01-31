@@ -32,4 +32,21 @@ class netdata::install inherits netdata {
   # build it, install it, start it
   # cd netdata
   # ./netdata-installer.sh
+  exec { 'Install_netdata':
+    command => "/opt/netdata/netdata-installer.sh --install ${install_dir}",
+    cwd     => '/opt/netdata',
+    creates => '/etc/netdata',
+  }
+
+  # Memory de-duplication instructions - If you enable it, you will save 40-60% of netdata memory.
+  # echo 1 >/sys/kernel/mm/ksm/run
+  # echo 1000 >/sys/kernel/mm/ksm/sleep_millisecs
+  if($netdata::name) {
+    sysctl::value {
+      "kernel.mm.ksm.run": value => "1"
+    }
+    sysctl::value {
+      "kernel.mm.ksm.sleep_millisecs": value => "1000"
+    }
+  }
 }
