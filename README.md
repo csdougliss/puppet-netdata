@@ -11,6 +11,11 @@ class { "::netdata":
     memory_de_depulication => true
 }
 
+Options:
+
+install_python_mysqldb - for monitoring mysql
+install_python_requests - for monitoring elastic search
+
 Requirements:
 
 https://github.com/puppetlabs/puppetlabs-stdlib
