@@ -48,6 +48,10 @@ class netdata::install inherits netdata {
     source => 'https://github.com/firehol/netdata.git'
   }
 
+  file { '/opt/netdata':
+    ensure => 'directory'
+  }
+
   # build it, install it, start it
   # cd netdata
   # ./netdata-installer.sh
@@ -55,7 +59,7 @@ class netdata::install inherits netdata {
     command => "/usr/local/src/netdata/netdata-installer.sh --install ${install_dir}",
     cwd     => '/opt/netdata',
     creates => '/etc/netdata',
-    require => Vcsrepo['/usr/local/src/netdata']
+    require => [ Vcsrepo['/usr/local/src/netdata'], File['/opt/netdata'] ]
   }
 
   # Memory de-duplication instructions - If you enable it, you will save 40-60% of netdata memory.
