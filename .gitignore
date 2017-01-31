@@ -1,0 +1,6 @@
+Modulefile
+/pkg
+.DS_Store
+.project
+.cproject
+/metadata.json
