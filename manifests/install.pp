@@ -3,7 +3,7 @@ class netdata::install inherits netdata {
   case $::operatingsystem {
     /(?i:debian|ubuntu)/: {
       ensure_packages(
-        ['zlib1g-dev', 'uuid-dev', 'libmnl-dev', 'gcc', 'make',
+        ['zlib1g-dev', 'uuid-dev', 'libmnl-dev', 'gcc',
           'autoconf', 'autoconf-archive', 'autogen', 'automake', 'pkg-config',
           'curl'],
         {'ensure' => 'present'})
@@ -11,7 +11,7 @@ class netdata::install inherits netdata {
     /(?i:redhat|centos)/: {
       ensure_packages(
         [ 'autoconf', 'automake', 'curl', 'gcc', 'libmnl-devel', 'libuuid-devel', 'lm_sensors',
-          'make', 'MySQL-python', 'nc', 'pkgconfig', 'python', 'python-psycopg2',
+          'MySQL-python', 'nc', 'pkgconfig', 'python', 'python-psycopg2',
           'PyYAML', 'zlib-devel'],
         {'ensure' => 'present'})
     }
@@ -21,7 +21,8 @@ class netdata::install inherits netdata {
   }
 
   # git is already defined in puppet module
-  
+  # make is already in make module
+
   # download it - the directory 'netdata' will be created
   git::repo{ 'netdata':
     path   => '/usr/local/src/netdata',
