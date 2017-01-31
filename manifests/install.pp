@@ -29,4 +29,14 @@ class netdata::install inherits netdata {
       fail("Module ${module_name} has no config for ${::operatingsystem}")
     }
   }
+
+  # download it - the directory 'netdata' will be created
+  git::repo{ 'netdata':
+    path   => '/usr/local/src/netdata',
+    source => 'https://github.com/firehol/netdata.git'
+  }
+
+  # build it, install it, start it
+  # cd netdata
+  # ./netdata-installer.sh
 }
