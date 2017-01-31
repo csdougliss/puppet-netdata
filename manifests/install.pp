@@ -44,6 +44,7 @@ class netdata::install inherits netdata {
   # download it - the directory 'netdata' will be created
   vcsrepo { '/usr/local/src/netdata':
     ensure   => present,
+    provider => git,
     source => 'https://github.com/firehol/netdata.git'
   }
 
