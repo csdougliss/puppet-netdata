@@ -24,8 +24,7 @@ class netdata::install inherits netdata {
   # make is already in make module
 
   # download it - the directory 'netdata' will be created
-  git::repo{ 'netdata':
-    path   => '/usr/local/src/netdata',
+  vcsrepo { '/usr/local/src/netdata':
     source => 'https://github.com/firehol/netdata.git'
   }
 
@@ -41,7 +40,7 @@ class netdata::install inherits netdata {
   # Memory de-duplication instructions - If you enable it, you will save 40-60% of netdata memory.
   # echo 1 >/sys/kernel/mm/ksm/run
   # echo 1000 >/sys/kernel/mm/ksm/sleep_millisecs
-  if($netdata::name) {
+  if($netdata::memory_de_duplication) {
     sysctl::value {
       "kernel.mm.ksm.run": value => "1"
     }
