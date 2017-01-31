@@ -21,3 +21,4 @@ Requirements:
 https://github.com/puppetlabs/puppetlabs-stdlib
 https://github.com/puppetlabs/puppetlabs-vcsrepo
 https://github.com/Element84/puppet-make
+https://github.com/example42/puppet-sysctl
