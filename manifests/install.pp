@@ -57,7 +57,7 @@ class netdata::install inherits netdata {
   # ./netdata-installer.sh
   exec { 'exec_install_netdata':
     command => "/usr/local/src/netdata/netdata-installer.sh --install ${install_dir}",
-    cwd     => '/opt/netdata',
+    cwd     => '/usr/local/src/netdata',
     creates => '/etc/netdata',
     require => [ Vcsrepo['/usr/local/src/netdata'], File['/opt/netdata'] ]
   }
