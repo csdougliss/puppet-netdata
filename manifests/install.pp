@@ -10,10 +10,15 @@ class netdata::install inherits netdata {
     }
     /(?i:redhat|centos)/: {
       ensure_packages(
-        [ 'autoconf', 'automake', 'curl', 'gcc', 'libmnl-devel', 'libuuid-devel', 'lm_sensors',
+        [ 'autoconf', 'automake', 'curl', 'libmnl-devel', 'libuuid-devel', 'lm_sensors',
           'MySQL-python', 'nc', 'pkgconfig', 'python', 'python-psycopg2',
           'PyYAML', 'zlib-devel'],
         {'ensure' => 'present'})
+      if !defined(Package['gcc']) {
+        package { 'gcc':
+          ensure => installed,
+        }
+      }
     }
     default: {
       fail("Module ${module_name} has no config for ${::operatingsystem}")
