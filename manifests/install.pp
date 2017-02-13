@@ -11,7 +11,7 @@ class netdata::install inherits netdata {
     /(?i:redhat|centos)/: {
       ensure_packages(
         [ 'autoconf', 'automake', 'curl', 'libmnl-devel', 'libuuid-devel', 'lm_sensors',
-          'MySQL-python', 'nc', 'pkgconfig', 'python', 'python-psycopg2',
+          'MySQL-python', 'nmap-ncat', 'pkgconfig', 'python', 'python-psycopg2',
           'PyYAML', 'zlib-devel'],
         {'ensure' => 'present'})
     }
