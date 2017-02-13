@@ -3,7 +3,7 @@ class netdata::install inherits netdata {
   case $::operatingsystem {
     /(?i:debian|ubuntu)/: {
       ensure_packages(
-        ['zlib1g-dev', 'uuid-dev', 'libmnl-dev', 'gcc',
+        ['zlib1g-dev', 'uuid-dev', 'libmnl-dev',
           'autoconf', 'autoconf-archive', 'autogen', 'automake', 'pkg-config',
           'curl'],
         {'ensure' => 'present'})
@@ -14,14 +14,15 @@ class netdata::install inherits netdata {
           'MySQL-python', 'nc', 'pkgconfig', 'python', 'python-psycopg2',
           'PyYAML', 'zlib-devel'],
         {'ensure' => 'present'})
-      if !defined(Package['gcc']) {
-        package { 'gcc':
-          ensure => installed,
-        }
-      }
     }
     default: {
       fail("Module ${module_name} has no config for ${::operatingsystem}")
+    }
+  }
+
+  if !defined(Package['gcc']) {
+    package { 'gcc':
+      ensure => installed,
     }
   }
 
